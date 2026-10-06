@@ -65,7 +65,6 @@ public final class WeatherMarker {
         marker.setInvisible(true);
         marker.setInvulnerable(true);
         marker.setNoGravity(true);
-        marker.setMarker(true);
         marker.setCustomNameVisible(false);
         marker.setCustomName(Component.literal(encoded));
         marker.addTag(TAG);
