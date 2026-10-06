@@ -10,6 +10,7 @@ import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.BufferUploader;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.Tesselator;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
@@ -51,8 +52,10 @@ public final class ClientStormRenderer {
         List<ArmorStand> markers = level.getEntitiesOfClass(ArmorStand.class, scan, WeatherMarker::isMarker);
         if (markers.isEmpty()) return;
 
-        Matrix4f matrix = new Matrix4f(event.getPoseStack());
-        matrix.translate((float) -cam.x, (float) -cam.y, (float) -cam.z);
+        PoseStack pose = event.getPoseStack();
+        pose.pushPose();
+        pose.translate(-cam.x, -cam.y, -cam.z);
+        Matrix4f matrix = pose.last().pose();
         float yaw = camera.getYRot();
         double yawRad = Math.toRadians(yaw);
         double screenRightX = Math.cos(yawRad);
@@ -75,6 +78,7 @@ public final class ClientStormRenderer {
             }
         }
         restoreBlend();
+        pose.popPose();
     }
 
     private static void setupBlend() {
