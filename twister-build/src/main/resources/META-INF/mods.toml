@@ -1,0 +1,28 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="All Rights Reserved - port package contains source assets supplied by the user"
+
+[[mods]]
+modId="twister"
+version="${mod_version}"
+displayName="Twister Port"
+authors="Leonard project"
+description='''
+Forge 1.20.1 severe-weather and tornado port built from the supplied Garry's Mod Twister archive.
+Includes natural cloud/storm development, supercells, mesocyclones, F0-F5 tornadoes,
+block damage, debris physics, persistent ground scars, local rain/hail rendering and source-derived audio/visual assets.
+'''
+
+[[dependencies.twister]]
+modId="forge"
+mandatory=true
+versionRange="[47,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.twister]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1,1.20.2)"
+ordering="NONE"
+side="BOTH"
